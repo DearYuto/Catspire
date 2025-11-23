@@ -12,6 +12,13 @@ export interface Character {
   buffs: Buff[];
   debuffs: Debuff[];
   avatar?: string;
+
+  // 클래스별 스택 시스템
+  stacks?: {
+    moonlight?: number; // 문퍼 달빛 스택
+    shadow?: number; // 섀도포 그림자 스택
+    nightmare?: number; // 드림테일 악몽 스택
+  };
 }
 
 export interface Buff {

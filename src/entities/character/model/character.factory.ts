@@ -4,6 +4,12 @@ import { CHARACTER_BASE_STATS } from "./character.stats";
 export function createCharacter(characterClass: CharacterClass): Character {
   const baseStats = CHARACTER_BASE_STATS[characterClass];
 
+  const initialStacks = {
+    warrior: { moonlight: 0 },
+    rogue: { shadow: 0 },
+    mage: { nightmare: 0 },
+  };
+
   return {
     id: `character_${characterClass}`,
     name: baseStats.name,
@@ -15,5 +21,6 @@ export function createCharacter(characterClass: CharacterClass): Character {
     block: 0,
     buffs: [],
     debuffs: [],
+    stacks: initialStacks[characterClass],
   };
 }

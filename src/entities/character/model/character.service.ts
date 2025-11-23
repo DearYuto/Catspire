@@ -76,4 +76,86 @@ export const CharacterService = {
   isAlive(character: Character): boolean {
     return character.currentHp > 0;
   },
+
+  addStack(
+    character: Character,
+    stackType: "moonlight" | "shadow" | "nightmare",
+    amount: number
+  ): Character {
+    const currentStacks = character.stacks || {};
+    const currentValue = currentStacks[stackType] || 0;
+
+    return {
+      ...character,
+      stacks: {
+        ...currentStacks,
+        [stackType]: currentValue + amount,
+      },
+    };
+  },
+
+  setStack(
+    character: Character,
+    stackType: "moonlight" | "shadow" | "nightmare",
+    amount: number
+  ): Character {
+    const currentStacks = character.stacks || {};
+
+    return {
+      ...character,
+      stacks: {
+        ...currentStacks,
+        [stackType]: Math.max(0, amount),
+      },
+    };
+  },
+
+  consumeStack(
+    character: Character,
+    stackType: "moonlight" | "shadow" | "nightmare",
+    amount?: number
+  ): Character {
+    const currentStacks = character.stacks || {};
+    const currentValue = currentStacks[stackType] || 0;
+
+    // amount가 없으면 전체 소모
+    const consumeAmount = amount ?? currentValue;
+
+    return {
+      ...character,
+      stacks: {
+        ...currentStacks,
+        [stackType]: Math.max(0, currentValue - consumeAmount),
+      },
+    };
+  },
+
+  getStack(
+    character: Character,
+    stackType: "moonlight" | "shadow" | "nightmare"
+  ): number {
+    return character.stacks?.[stackType] || 0;
+  },
+
+  checkStackCondition(
+    character: Character,
+    stackType: "moonlight" | "shadow" | "nightmare",
+    operator: ">=" | "<=" | "==" | ">",
+    value: number
+  ): boolean {
+    const currentStack = this.getStack(character, stackType);
+
+    switch (operator) {
+      case ">=":
+        return currentStack >= value;
+      case "<=":
+        return currentStack <= value;
+      case "==":
+        return currentStack === value;
+      case ">":
+        return currentStack > value;
+      default:
+        return false;
+    }
+  },
 };
