@@ -1,6 +1,6 @@
 "use client";
 
-import { MoonParticles } from "@/shared/ui";
+import { MoonParticles } from "@/shared/ui/effects/moon-particles";
 import { MuteButton } from "@/components/audio-control";
 import { useFirstVisit } from "@/shared/lib/hooks/use-first-visit";
 import GameLogo from "@/components/game-logo/game-logo";
