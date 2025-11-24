@@ -35,12 +35,3 @@ html {
 ::-webkit-scrollbar-track {
   background: #1e1b4b;
 }
-
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #6366f1, #a855f7);
-  border-radius: 5px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #818cf8, #c084fc);
-}
