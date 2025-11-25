@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { useGameStore } from "@/features/game-progress";
+// import { useGameStore } from "@/features/game-progress";
 import { useEffect, useState } from "react";
 
 interface MuteButtonProps {
@@ -9,15 +9,9 @@ interface MuteButtonProps {
 }
 
 export function MuteButton({ showAnimation = false }: MuteButtonProps) {
-  const [mounted, setMounted] = useState(false);
-  const isMuted = useGameStore((state) => state.isMuted);
-  const toggleMute = useGameStore((state) => state.toggleMute);
-
-  useEffect(() => {
-    // Hydration 에러 방지를 위한 클라이언트 전용 렌더링
-    // eslint-disable-next-line
-    setMounted(true);
-  }, []);
+  const [mounted, setMounted] = useState(true);
+  // const isMuted = useGameStore((state) => state.isMuted);
+  // const toggleMute = useGameStore((state) => state.toggleMute);
 
   if (!mounted) {
     return null;
@@ -34,13 +28,13 @@ export function MuteButton({ showAnimation = false }: MuteButtonProps) {
       className="fixed top-6 right-6 z-50"
     >
       <motion.button
-        onClick={toggleMute}
+        // onClick={toggleMute}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
         className="group relative w-12 h-12 rounded-full bg-slate-900 bg-opacity-40 backdrop-blur-sm hover:bg-opacity-60 transition-all"
       >
         <AnimatePresence mode="wait">
-          {isMuted ? (
+          {/* {isMuted ? (
             <motion.div
               key="muted"
               initial={{ scale: 0, rotate: -180 }}
@@ -60,7 +54,7 @@ export function MuteButton({ showAnimation = false }: MuteButtonProps) {
             >
               🔊
             </motion.div>
-          )}
+          )} */}
         </AnimatePresence>
       </motion.button>
     </motion.div>
