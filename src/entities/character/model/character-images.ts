@@ -26,3 +26,4 @@ export function getCharacterImages(
   return CHARACTER_IMAGES[characterClass];
 }
 
+
