@@ -28,8 +28,13 @@ export const prologueDialogue: DialogueScene[] = [
     textSpeed: 40,
   },
   {
+    background: "/images/backgrounds/moon_shard_tower_mystery.png",
+    text: "달빛의 힘을 잃은 왕국은 어둠에 잠식되기 시작했고",
+    textSpeed: 40,
+  },
+  {
     background: "/images/backgrounds/scene_monster_night.png",
-    text: "달빛의 힘을 잃은 왕국은 어둠에 잠식되기 시작했고, 달의 몬스터들이 밤마다 출몰하기 시작했다.",
+    text: "달의 몬스터들이 밤마다 출몰하기 시작했다.",
     textSpeed: 40,
   },
   {

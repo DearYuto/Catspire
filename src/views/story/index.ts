@@ -1,2 +1,1 @@
-export { StoryPage } from './story-page';
-
+export { StoryPage } from "./story-page";
