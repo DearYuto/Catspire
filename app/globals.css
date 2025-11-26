@@ -29,3 +29,32 @@ html {
 ::-webkit-scrollbar-track {
   background: #1e1b4b;
 }
+
+@layer components {
+  .btn {
+    @apply cursor-pointer relative text-2xl font-black tracking-wider overflow-hidden rounded-xl;
+  }
+
+  .btn-gold {
+    background: linear-gradient(135deg, #ffe5b8 0%, #ffd88a 50%, #d4b887 100%);
+    box-shadow: 0 10px 40px rgba(255, 229, 184, 0.5),
+      0 0 20px rgba(255, 216, 138, 0.3);
+    border: 2px solid rgba(255, 248, 231, 0.5);
+  }
+
+  .btn-purple {
+    background: linear-gradient(135deg, #a78bfa 0%, #8b7fdd 100%);
+    box-shadow: 0 8px 30px rgba(167, 139, 250, 0.4);
+    border: 2px solid rgba(167, 139, 250, 0.5);
+  }
+}
+
+@layer components {
+  .text-gold {
+    @apply text-amber-300 text-sm hover:text-amber-200 transition-colors;
+  }
+
+  .text-default {
+    @apply text-slate-900;
+  }
+}
