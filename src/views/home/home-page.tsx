@@ -1,11 +1,11 @@
 "use client";
 
-import { MoonParticles } from "@/shared/ui/effects/moon-particles";
-import { MuteButton } from "@/components/audio-control";
+import { MoonParticles } from "@/shared/components/effects/moon-particles";
+import { MuteButton } from "@/shared/components/audio-control";
 import { useFirstVisit } from "@/shared/lib/hooks/use-first-visit";
-import GameLogo from "@/components/game-logo/game-logo";
+import GameLogo from "@/shared/components/game-logo/game-logo";
 import { HomeFooter } from "./home-footer";
-import { IntroButtons } from "@/features/game-intro/intro-buttons";
+import { IntroButtons } from "@/features/game-main/components/intro-buttons";
 
 const FIRST_VISIT_STORAGE_KEY = "catspire_visited";
 

@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Button } from "@/shared/ui";
+import { Button } from "@/shared/components";
 
 interface CharacterCardContentProps {
   description: string;
@@ -20,18 +20,18 @@ export function CharacterCardContent({
 }: CharacterCardContentProps) {
   return (
     <div
-      className="flex flex-col flex-1 gap-4"
+      className="flex flex-1 flex-col gap-4"
       style={{
         padding: "24px",
         paddingTop: "20px",
         paddingBottom: "24px",
       }}
     >
-      <p className="text-gray-300 leading-relaxed text-base">{description}</p>
+      <p className="text-base leading-relaxed text-gray-300">{description}</p>
 
       {passive && (
         <p
-          className="relative text-sm text-amber-300 font-semibold leading-relaxed bg-slate-800/30 backdrop-blur-sm ounded-r before:content-[''] before:absolute before:left-0 before:top-0 before:bottom-0 before:w-1 before:bg-amber-500 before:rounded-l"
+          className="ounded-r relative bg-slate-800/30 text-sm leading-relaxed font-semibold text-amber-300 backdrop-blur-sm before:absolute before:top-0 before:bottom-0 before:left-0 before:w-1 before:rounded-l before:bg-amber-500 before:content-['']"
           style={{ paddingLeft: "20px" }}
         >
           {passive}
@@ -39,13 +39,13 @@ export function CharacterCardContent({
       )}
 
       {lore && (
-        <div className="bg-slate-800/30 backdrop-blur-sm px-4 py-3 rounded ">
-          <p className="text-sm text-gray-400 italic leading-relaxed">{lore}</p>
+        <div className="rounded bg-slate-800/30 px-4 py-3 backdrop-blur-sm">
+          <p className="text-sm leading-relaxed text-gray-400 italic">{lore}</p>
         </div>
       )}
 
       <div className="mb-4">
-        <h4 className="font-bold text-amber-300 text-sm mb-3">특징:</h4>
+        <h4 className="mb-3 text-sm font-bold text-amber-300">특징:</h4>
         <ul className="space-y-2">
           {features.map((feature, index) => (
             <motion.li
@@ -53,7 +53,7 @@ export function CharacterCardContent({
               initial={{ opacity: 0, x: -10 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: animationDelay + 0.2 + index * 0.1 }}
-              className="text-sm text-gray-400 flex items-center gap-2 leading-relaxed"
+              className="flex items-center gap-2 text-sm leading-relaxed text-gray-400"
             >
               <span className="text-amber-400">✓</span>
               <span>{feature}</span>
@@ -62,7 +62,7 @@ export function CharacterCardContent({
         </ul>
       </div>
 
-      <div className="text-sm font-bold text-gray-400 flex items-center gap-2 mb-4">
+      <div className="mb-4 flex items-center gap-2 text-sm font-bold text-gray-400">
         <span>난이도:</span>
         <span>{difficulty}</span>
       </div>
@@ -72,7 +72,7 @@ export function CharacterCardContent({
       <div className="mt-auto">
         <Button
           variant="custom"
-          className="w-full text-base font-bold tracking-wider rounded-xl transition-all hover:scale-105 active:scale-95"
+          className="w-full rounded-xl text-base font-bold tracking-wider transition-all hover:scale-105 active:scale-95"
           style={{
             background:
               "linear-gradient(135deg, #FFE5B8 0%, #FFD88A 50%, #D4B887 100%)",

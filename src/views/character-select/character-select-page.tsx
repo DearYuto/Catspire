@@ -4,9 +4,9 @@ import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 // import { useGameStore } from "@/features/game-progress";
 import { CharacterClass } from "@/shared/types";
-import { MoonParticles } from "@/shared/ui";
-import { MuteButton } from "@/components/audio-control";
-import { CharacterCard } from "@/widgets/character-card";
+import { MoonParticles } from "@/shared/components";
+import { MuteButton } from "@/shared/components/audio-control";
+import { CharacterCard } from "@/features/game-card/components/character-card";
 
 export function CharacterSelectPage() {
   const router = useRouter();
@@ -19,19 +19,19 @@ export function CharacterSelectPage() {
 
   return (
     <main
-      className="min-h-screen relative overflow-hidden flex items-center justify-center"
+      className="relative flex min-h-screen items-center justify-center overflow-hidden"
       style={{ backgroundColor: "#0A0620" }}
     >
       <MoonParticles />
 
-      <div className="fixed top-8 left-8 right-8 z-50 flex items-start justify-between">
+      <div className="fixed top-8 right-8 left-8 z-50 flex items-start justify-between">
         <motion.button
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
           onClick={() => router.push("/")}
-          className="text-amber-300 hover:text-amber-200 text-sm font-medium transition-colors"
+          className="text-sm font-medium text-amber-300 transition-colors hover:text-amber-200"
         >
           <span className="flex items-center gap-2">
             <motion.span
@@ -47,7 +47,7 @@ export function CharacterSelectPage() {
         <MuteButton showAnimation={false} />
       </div>
 
-      <div className="relative z-10 flex flex-col items-center justify-center w-full max-w-7xl mx-auto px-8 py-20">
+      <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col items-center justify-center px-8 py-20">
         <motion.div
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -56,7 +56,7 @@ export function CharacterSelectPage() {
           style={{ marginBottom: "120px" }}
         >
           <h1
-            className="text-5xl font-bold text-transparent bg-clip-text bg-linear-to-r from-amber-200 via-yellow-300 to-amber-400"
+            className="bg-linear-to-r from-amber-200 via-yellow-300 to-amber-400 bg-clip-text text-5xl font-bold text-transparent"
             style={{ marginBottom: "16px" }}
           >
             클래스 선택
@@ -66,7 +66,7 @@ export function CharacterSelectPage() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-3 gap-8 w-full max-w-6xl">
+        <div className="grid w-full max-w-6xl grid-cols-3 gap-8">
           <CharacterCard
             characterClass="warrior"
             onClick={() => handleStartGame("warrior")}

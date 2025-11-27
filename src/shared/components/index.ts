@@ -1,4 +1,4 @@
-export { Button } from "./button";
+export { Button } from "./button/button";
 
 export { Card3DWrapper, CardHolographicOverlay, CardDecoration } from "./card";
 

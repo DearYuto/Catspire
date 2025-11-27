@@ -1,9 +1,9 @@
 "use client";
 
-import { Button } from "@/shared/ui/button";
+import { Button } from "@/shared/components/button/button";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
-import { menuItems } from "./consts/menu-item";
+import { menuItems } from "../consts/menu-item";
 import { AnimatedMenuButton } from "./animated-menu-button";
 
 export const IntroButtons = ({ initAnimation }: { initAnimation: boolean }) => {
@@ -66,11 +66,7 @@ const StartText = () => {
 const StartButton = ({ startFn }: { startFn: () => void }) => {
   return (
     <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
-      <Button
-        onClick={() => startFn()}
-        unstyled
-        className="btn btn-gold h-10 min-w-[180px] text-base"
-      >
+      <Button onClick={() => startFn()} unstyled className="btn btn-gold">
         <motion.div
           animate={{ x: ["-100%", "100%"] }}
           transition={{
@@ -91,7 +87,7 @@ const StartButton = ({ startFn }: { startFn: () => void }) => {
           >
             ✨
           </motion.span>
-          <span className="text-slate-700">START</span>
+          <span className="text-default text-base font-bold">START</span>
           <motion.span
             animate={{ rotate: [360, 0] }}
             transition={{
@@ -131,7 +127,7 @@ const ReturnButton = ({ returnFn }: { returnFn: () => void }) => {
     <motion.button
       onClick={() => returnFn()}
       whileHover={{ scale: 1.1 }}
-      className="text-gold mt-2 cursor-pointer"
+      className="btn text-gold mt-2 cursor-pointer font-medium"
     >
       ← 돌아가기
     </motion.button>

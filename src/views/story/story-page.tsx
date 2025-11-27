@@ -3,10 +3,11 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
-import { Button, MoonParticles } from "@/shared/ui";
-import { MuteButton } from "@/components/audio-control";
-import { VisualNovelScene } from "@/components/visual-novel";
+import { Button, MoonParticles } from "@/shared/components";
+import { MuteButton } from "@/shared/components/audio-control";
+import { VisualNovelScene } from "@/features/game-prologue/visual-novel";
 import { prologueDialogue } from "@/shared/config/prologue-dialogue";
+import { SkipConfirmModal } from "@/features/game-prologue/scene-skip/components/skip-confirm-modal";
 
 export function StoryPage() {
   const router = useRouter();
@@ -56,13 +57,17 @@ export function StoryPage() {
             </div>
 
             {/* Right side - Progress & Mute button */}
-            <div className="flex flex-col items-end gap-3 rounded-xl bg-white/10 p-1 pr-4 pl-4">
-              {/* Progress indicator */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="flex flex-col items-end gap-3 rounded-xl bg-white/10 p-1 pr-4 pl-4"
+            >
               <motion.div
                 className="flex items-center justify-center"
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, delay: 0.1 }}
+                exit={{ opacity: 0 }}
               >
                 <span className="mr-2 text-xs text-white opacity-60">
                   Scene
@@ -74,9 +79,7 @@ export function StoryPage() {
                   / {prologueDialogue.length}
                 </span>
               </motion.div>
-
-              <MuteButton showAnimation={false} />
-            </div>
+            </motion.div>
 
             <Button
               onClick={() => setShowSkipConfirm(true)}
@@ -87,73 +90,23 @@ export function StoryPage() {
               </span>
             </Button>
           </div>
+
+          <MuteButton showAnimation={false} />
         </div>
 
-        {/* Visual Novel Scene - 게임 영역 내부 */}
+        {/* 비주얼노벨씬 */}
         <VisualNovelScene
           scene={currentScene}
           onNext={handleNext}
           canProceed={true}
         />
 
-        {/* Skip confirmation modal - 게임 영역 내부 */}
+        {/* 스킵 모달 */}
         {showSkipConfirm && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="bg-opacity-70 absolute inset-0 z-100 flex items-center justify-center bg-black backdrop-blur-sm"
-            onClick={() => setShowSkipConfirm(false)}
-          >
-            <motion.div
-              initial={{ scale: 0.9, opacity: 0, y: 20 }}
-              animate={{ scale: 1, opacity: 1, y: 0 }}
-              transition={{ type: "spring", duration: 0.5 }}
-              className="bg-opacity-90 mx-4 max-w-md rounded-2xl bg-slate-950 p-8 backdrop-blur-md"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <div className="mb-6 text-center">
-                <motion.div
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{ delay: 0.2, type: "spring" }}
-                  className="bg-opacity-20 mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-linear-to-br from-amber-500 to-orange-600"
-                >
-                  <span className="text-4xl">⏭️</span>
-                </motion.div>
-                <h3 className="mb-3 text-xl font-bold text-white md:text-2xl">
-                  프롤로그를 건너뛰시겠습니까?
-                </h3>
-                <p className="text-base text-gray-400">
-                  스토리를 나중에 다시 볼 수 있습니다.
-                </p>
-              </div>
-              <div className="flex flex-col gap-3">
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={handleSkip}
-                  className="w-full rounded-xl px-8 py-3 text-base font-bold tracking-wider transition-all"
-                  style={{
-                    background:
-                      "linear-gradient(135deg, #FFE5B8 0%, #FFD88A 50%, #D4B887 100%)",
-                    boxShadow: "0 8px 30px rgba(255, 229, 184, 0.4)",
-                    border: "2px solid rgba(255, 248, 231, 0.5)",
-                    color: "#1e293b",
-                  }}
-                >
-                  건너뛰기
-                </motion.button>
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={() => setShowSkipConfirm(false)}
-                  className="w-full text-sm text-amber-300 transition-colors hover:text-amber-200"
-                >
-                  계속 보기
-                </motion.button>
-              </div>
-            </motion.div>
-          </motion.div>
+          <SkipConfirmModal
+            handleShowSkipConfirmModal={setShowSkipConfirm}
+            handleSkip={handleSkip}
+          />
         )}
       </div>
     </main>

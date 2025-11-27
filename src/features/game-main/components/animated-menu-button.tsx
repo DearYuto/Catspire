@@ -1,7 +1,7 @@
-import { Button } from "@/shared/ui";
+import { Button } from "@/shared/components";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
-import { MenuItem } from "./consts/menu-item";
+import { MenuItem } from "../consts/menu-item";
 
 interface AnimatedMenuButtonProps {
   item: MenuItem;
@@ -19,7 +19,7 @@ export const AnimatedMenuButton = ({ item }: AnimatedMenuButtonProps) => {
     <motion.div {...motionConfig}>
       <Button
         onClick={() => router.push(item.path)}
-        className={`btn btn-${item.variant} min-w-[180px] text-base text-${item.textColor}`}
+        className={`btn btn-${item.variant} ] text-${item.textColor}`}
       >
         {item.label}
       </Button>

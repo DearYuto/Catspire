@@ -14,7 +14,7 @@ import {
   Card3DWrapper,
   CardHolographicOverlay,
   CardDecoration,
-} from "@/shared/ui/card";
+} from "@/shared/components/card";
 import { RefObject } from "react";
 
 export interface CharacterCardProps {
@@ -70,7 +70,7 @@ export function CharacterCard({
         onMouseLeave={onMouseLeave}
       >
         <div
-          className="relative bg-slate-950 bg-opacity-60 backdrop-blur-sm rounded-2xl shadow-lg overflow-visible border border-slate-700 transition-all hover:border-slate-500 hover:shadow-2xl hover:shadow-white/10 flex flex-col"
+          className="bg-opacity-60 relative flex flex-col overflow-visible rounded-2xl border border-slate-700 bg-slate-950 shadow-lg backdrop-blur-sm transition-all hover:border-slate-500 hover:shadow-2xl hover:shadow-white/10"
           style={{ height: "850px" }}
           suppressHydrationWarning
         >

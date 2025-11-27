@@ -34,8 +34,9 @@ html {
 @layer components {
   .btn {
     @apply relative cursor-pointer overflow-hidden rounded-xl text-2xl font-black tracking-wider;
-    height: 40px;
-    width: 100px;
+    width: 100%;
+    min-width: 180px;
+    min-height: 40px;
   }
 
   .btn-ghost {
