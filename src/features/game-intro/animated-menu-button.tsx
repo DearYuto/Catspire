@@ -8,7 +8,7 @@ interface AnimatedMenuButtonProps {
 }
 
 const motionConfig = {
-  whileHover: { scale: 1.05, x: 5 },
+  whileHover: { scale: 1.1 },
   whileTap: { scale: 0.95 },
 };
 

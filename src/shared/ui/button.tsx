@@ -53,7 +53,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           "disabled:transform-none disabled:cursor-not-allowed disabled:opacity-50",
           {
             "px-3 text-sm": size === "sm",
-            "px- text-base": size === "md",
+            "px-6 text-base": size === "md",
             "px-8 text-lg": size === "lg",
           },
           className,
