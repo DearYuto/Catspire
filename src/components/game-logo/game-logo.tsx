@@ -1,19 +1,10 @@
-"use client";
-
-import { motion, AnimatePresence } from "framer-motion";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
-import { Button } from "@/shared/ui/button";
+import { motion } from "framer-motion";
 
 interface GameLogoProps {
   initAnimation: boolean;
 }
 
 const GameLogo = ({ initAnimation }: GameLogoProps) => {
-  const router = useRouter();
-
-  const [showOptions, setShowOptions] = useState(false);
-
   return (
     <motion.div
       initial={
@@ -24,12 +15,12 @@ const GameLogo = ({ initAnimation }: GameLogoProps) => {
         duration: initAnimation ? 1.5 : 0,
         delay: initAnimation ? 0.2 : 0,
       }}
-      className="relative z-0 flex flex-col items-center justify-center min-h-screen gap-8"
+      className="relative z-0 flex flex-col items-center justify-center gap-8"
     >
       <svg
         viewBox="0 0 400 200"
         xmlns="http://www.w3.org/2000/svg"
-        className="w-[90vw] max-w-4xl h-auto"
+        className="h-auto w-[90vw] max-w-4xl"
         preserveAspectRatio="xMidYMid meet"
       >
         <defs>
