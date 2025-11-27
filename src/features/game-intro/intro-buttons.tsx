@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@/shared/ui/button";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
@@ -8,16 +10,18 @@ export const IntroButtons = ({ initAnimation }: { initAnimation: boolean }) => {
   const [showOptions, setShowOptions] = useState(false);
 
   return (
-    <AnimatePresence mode="wait">
-      {showOptions ? (
-        <ReturnButtonArea returnFn={() => setShowOptions(false)} />
-      ) : (
-        <StartButtonArea
-          initAnimation={initAnimation}
-          setShowOptions={setShowOptions}
-        />
-      )}
-    </AnimatePresence>
+    <div className="min-h-[200px]">
+      <AnimatePresence mode="wait">
+        {showOptions ? (
+          <ReturnButtonArea returnFn={() => setShowOptions(false)} />
+        ) : (
+          <StartButtonArea
+            initAnimation={initAnimation}
+            setShowOptions={setShowOptions}
+          />
+        )}
+      </AnimatePresence>
+    </div>
   );
 };
 
@@ -39,7 +43,7 @@ const StartButtonArea = ({
         duration: initAnimation ? 0.8 : 0,
         delay: initAnimation ? 1.5 : 0,
       }}
-      className="-mt-4 flex flex-col items-center gap-4"
+      className="mt-4 flex flex-col items-center gap-4"
     >
       <StartButton startFn={() => setShowOptions(true)} />
       <StartText />
@@ -112,7 +116,7 @@ const ReturnButtonArea = ({ returnFn }: { returnFn: () => void }) => {
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="-mt-4 flex flex-col items-center gap-4"
+      className="mt-4 flex flex-col items-center gap-4"
     >
       {menuItems.map((item) => (
         <AnimatedMenuButton key={item.id} item={item} />
