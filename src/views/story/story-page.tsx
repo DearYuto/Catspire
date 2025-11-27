@@ -31,7 +31,7 @@ export function StoryPage() {
 
   return (
     <main
-      className="relative flex min-h-screen items-center justify-center overflow-hidden"
+      className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-4 py-6 sm:px-6 lg:px-10"
       style={{ backgroundColor: "#0A0620" }}
     >
       <MoonParticles />
@@ -41,15 +41,19 @@ export function StoryPage() {
         style={{
           aspectRatio: "16/9",
           maxHeight: "1080px",
-          height: "min(calc(100vh - 4rem), 1080px)",
+          height: "clamp(420px, calc(100vh - 5rem), 1080px)",
         }}
       >
         {/* Top Controls - 게임 영역 내부 */}
-        <div className="absolute top-0 right-0 left-0 z-50 p-8">
-          <div className="flex items-start justify-between gap-4">
+        <div className="absolute top-0 right-0 left-0 z-50 p-4 sm:p-6 lg:p-8">
+          <div className="flex items-center justify-between gap-3 overflow-x-auto rounded-full bg-black/20 px-3 py-2 whitespace-nowrap sm:gap-4 sm:bg-transparent sm:px-0 sm:py-0">
             {/* Left side - Navigation buttons */}
-            <div className="flex gap-3">
-              <Button onClick={() => router.push("/")} className="btn-ghost">
+            <div className="flex items-center gap-3">
+              <Button
+                size="sm"
+                onClick={() => router.push("/")}
+                className="btn-ghost shrink-0"
+              >
                 <span className="flex items-center gap-2 font-medium">
                   메인으로
                 </span>
@@ -60,7 +64,7 @@ export function StoryPage() {
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="flex flex-col items-end gap-3 rounded-xl bg-white/10 p-1 pr-4 pl-4"
+              className="flex flex-col items-end gap-1 rounded-xl bg-white/10 px-3 py-2 sm:gap-2 sm:px-4"
             >
               <motion.div
                 className="flex items-center justify-center"
@@ -82,8 +86,9 @@ export function StoryPage() {
             </motion.div>
 
             <Button
+              size="sm"
               onClick={() => setShowSkipConfirm(true)}
-              className="btn-ghost"
+              className="btn-ghost shrink-0"
             >
               <span className="flex items-center gap-2 font-medium">
                 건너뛰기
