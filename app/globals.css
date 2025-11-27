@@ -30,11 +30,16 @@ html {
   background: #1e1b4b;
 }
 
+/* 버튼 */
 @layer components {
   .btn {
     @apply relative cursor-pointer overflow-hidden rounded-xl text-2xl font-black tracking-wider;
     height: 40px;
     width: 100px;
+  }
+
+  .btn-ghost {
+    @apply rounded-xl p-1 font-thin text-white opacity-60 shadow-2xl backdrop-blur-md;
   }
 
   .btn-gold {
@@ -52,6 +57,7 @@ html {
   }
 }
 
+/* 텍스트 */
 @layer components {
   .text-gold {
     @apply text-sm text-amber-300 transition-colors hover:text-amber-200;

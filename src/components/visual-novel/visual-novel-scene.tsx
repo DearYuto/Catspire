@@ -53,7 +53,7 @@ export function VisualNovelScene({
 
   return (
     <div
-      className="relative w-full h-full overflow-hidden cursor-pointer bg-slate-950"
+      className="relative h-full w-full cursor-pointer overflow-hidden bg-slate-950"
       onClick={handleClick}
     >
       <AnimatePresence mode="wait">
@@ -70,7 +70,7 @@ export function VisualNovelScene({
               src={scene.background}
               alt="Background"
               fill
-              className="w-full h-full object-cover"
+              className="h-full w-full object-cover"
             />
             <div className="absolute inset-0 bg-linear-to-b from-slate-950 via-transparent to-slate-950 opacity-60" />
           </motion.div>
@@ -79,7 +79,7 @@ export function VisualNovelScene({
 
       {/* 배경 장식 - 이미지가 없을 때도 분위기 유지 */}
       {!scene.background && (
-        <div className="absolute inset-0 pointer-events-none">
+        <div className="pointer-events-none absolute inset-0">
           <motion.div
             animate={{
               scale: [1, 1.1, 1],
@@ -90,22 +90,22 @@ export function VisualNovelScene({
               repeat: Infinity,
               ease: "easeInOut",
             }}
-            className="absolute top-1/4 right-1/4 w-96 h-96 rounded-full blur-3xl"
+            className="absolute top-1/4 right-1/4 h-96 w-96 rounded-full blur-3xl"
             style={{ backgroundColor: "rgba(100, 100, 150, 0.15)" }}
           />
         </div>
       )}
 
-      <div className="absolute inset-0 flex flex-col items-center justify-center px-12 md:px-20 pt-28 pb-16">
+      <div className="absolute inset-0 flex flex-col items-center justify-center px-12 pt-28 pb-16 md:px-20">
         {/* 대화창 영역 */}
         <motion.div
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.4 }}
-          className="w-full max-w-4xl shrink-0 bottom-0 absolute"
+          className="absolute bottom-0 w-full max-w-4xl shrink-0"
         >
-          <div className="flex justify-center gap-4 ">
-            <div className="flex-1 w-full max-w-6xl flex items-end justify-center min-h-0 pointer-events-none">
+          <div className="flex justify-center gap-4">
+            <div className="pointer-events-none flex min-h-0 w-full max-w-6xl flex-1 items-end justify-center">
               <AnimatePresence mode="wait">
                 {scene.character && (
                   <motion.div
@@ -123,21 +123,21 @@ export function VisualNovelScene({
                       "relative flex w-full",
                       scene.character.position === "left"
                         ? "justify-start"
-                        : "justify-end"
+                        : "justify-end",
                     )}
                   >
                     <div
                       className="relative overflow-hidden"
                       style={{ width: 250, height: 370 }}
                     >
-                      <div className="absolute inset-0 flex items-center justify-center z-0">
-                        <div className="relative w-[320px] h-[220px]">
+                      <div className="absolute inset-0 z-0 flex items-center justify-center">
+                        <div className="relative h-[220px] w-[320px]">
                           <Image
                             src={scene.character.sprite}
                             alt={scene.character.name}
                             fill
                             priority
-                            className="object-contain mt-2"
+                            className="mt-2 object-contain"
                           />
                         </div>
                       </div>
@@ -147,18 +147,18 @@ export function VisualNovelScene({
                         alt="Character frame"
                         fill
                         priority
-                        className="object-contain pointer-events-none z-10"
+                        className="pointer-events-none z-10 object-contain"
                       />
 
                       {/* 이름표 */}
-                      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 z-30 w-full">
+                      <div className="absolute bottom-0 left-1/2 z-30 w-full -translate-x-1/2">
                         {scene.speaker && (
                           <motion.div
                             initial={{ y: -10, opacity: 0 }}
                             animate={{ y: 0, opacity: 1 }}
                             transition={{ delay: 0.1 }}
                           >
-                            <span className="inline-block px-5 py-2.5 bg-linear-to-b from-[#965f2f] to-[#c78c47] rounded-xl border-[#965f2f] border-2 text-white font-bold text-base text-center w-full md:text-lg">
+                            <span className="inline-block w-full rounded-xl border-2 border-[#965f2f] bg-linear-to-b from-[#965f2f] to-[#c78c47] px-5 py-2.5 text-center text-base font-bold text-white md:text-lg">
                               {scene.speaker}
                             </span>
                           </motion.div>
@@ -177,17 +177,17 @@ export function VisualNovelScene({
               transition={{ duration: 0.3 }}
               style={{ padding: "16px 24px" }}
               className={clsx(
-                "w-full self-end bg-slate-[#965f2f] bg-opacity-95 backdrop-blur-md rounded-xl px-6 md:px-8 md:pt-10 pb-6 md:pb-8 border-[#cba9823e] border-2 border-opacity-60 shadow-2xl",
-                scene.character ? "h-[295px]" : "max-h-[300px] min-h-[140px]"
+                "bg-slate-[#965f2f] bg-opacity-95 border-opacity-60 w-full self-end rounded-xl border-2 border-[#cba9823e] px-6 pb-6 shadow-2xl backdrop-blur-md md:px-8 md:pt-10 md:pb-8",
+                scene.character ? "h-[295px]" : "max-h-[300px] min-h-[140px]",
               )}
             >
-              <p className="text-white text-base md:text-lg lg:text-xl leading-relaxed min-h-16 text-left">
+              <p className="min-h-16 text-left text-base leading-relaxed text-white md:text-lg lg:text-xl">
                 {displayedText}
                 {isTyping && (
                   <motion.span
                     animate={{ opacity: [1, 0] }}
                     transition={{ duration: 0.5, repeat: Infinity }}
-                    className="inline-block ml-2 text-gray-400"
+                    className="ml-2 inline-block text-gray-400"
                   >
                     ▼
                   </motion.span>
@@ -197,17 +197,18 @@ export function VisualNovelScene({
           </div>
 
           {/* 진행 표시 */}
-          <div className="h-10 flex items-center justify-center mt-3">
+          <div className="mt-3 flex h-10 items-center justify-center">
             {!isTyping && canProceed && (
               <motion.div
+                className="pb-4"
                 initial={{ opacity: 0 }}
-                animate={{ opacity: 1, y: [0, 6, 0] }}
+                animate={{ opacity: 1, y: [0, 4, 0] }}
                 transition={{
                   opacity: { duration: 0.3 },
                   y: { duration: 1.5, repeat: Infinity, ease: "easeInOut" },
                 }}
               >
-                <span className="text-gray-400 text-xs md:text-sm font-medium">
+                <span className="text-xs font-medium text-white opacity-60 md:text-sm">
                   클릭하여 계속 ▼
                 </span>
               </motion.div>

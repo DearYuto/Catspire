@@ -33,7 +33,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         <button
           ref={ref}
           className={clsx(
-            "rounded-lg font-bold transition-all duration-200",
+            "cursor-pointer rounded-lg font-bold transition-all duration-200",
             "disabled:cursor-not-allowed disabled:opacity-50",
             className,
           )}
@@ -49,7 +49,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       <button
         ref={ref}
         className={clsx(
-          "transform rounded-lg font-bold transition-all duration-200 hover:scale-105 active:scale-95",
+          "transform cursor-pointer rounded-lg font-bold transition-all duration-200 hover:scale-105 active:scale-95",
           "disabled:transform-none disabled:cursor-not-allowed disabled:opacity-50",
           {
             "px-3 text-sm": size === "sm",

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
-import { MoonParticles } from "@/shared/ui";
+import { Button, MoonParticles } from "@/shared/ui";
 import { MuteButton } from "@/components/audio-control";
 import { VisualNovelScene } from "@/components/visual-novel";
 import { prologueDialogue } from "@/shared/config/prologue-dialogue";
@@ -30,7 +30,7 @@ export function StoryPage() {
 
   return (
     <main
-      className="relative min-h-screen overflow-hidden flex items-center justify-center"
+      className="relative flex min-h-screen items-center justify-center overflow-hidden"
       style={{ backgroundColor: "#0A0620" }}
     >
       <MoonParticles />
@@ -44,47 +44,48 @@ export function StoryPage() {
         }}
       >
         {/* Top Controls - 게임 영역 내부 */}
-        <div className="absolute top-0 left-0 right-0 z-50 p-8">
+        <div className="absolute top-0 right-0 left-0 z-50 p-8">
           <div className="flex items-start justify-between gap-4">
             {/* Left side - Navigation buttons */}
             <div className="flex gap-3">
-              <motion.button
-                style={{
-                  padding: "2px 4px",
-                }}
-                onClick={() => router.push("/")}
-                className="px-6 py-2.5 rounded-lg bg-slate-900 bg-opacity-70 backdrop-blur-sm border border-white border-opacity-30 text-white hover:text-gray-200 text-sm font-medium transition-all shadow-lg hover:shadow-white/10"
-              >
-                <span className="flex items-center gap-2">돌아가기</span>
-              </motion.button>
+              <Button onClick={() => router.push("/")} className="btn-ghost">
+                <span className="flex items-center gap-2 font-medium">
+                  메인으로
+                </span>
+              </Button>
             </div>
 
             {/* Right side - Progress & Mute button */}
-            <div className="flex flex-col gap-3 items-end">
+            <div className="flex flex-col items-end gap-3 rounded-xl bg-white/10 p-1 pr-4 pl-4">
               {/* Progress indicator */}
               <motion.div
+                className="flex items-center justify-center"
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, delay: 0.1 }}
               >
-                <span className="text-xs text-white mr-4">Scene</span>
-                <span className="text-xs text-white">
-                  {currentSceneIndex + 1} / {prologueDialogue.length}{" "}
+                <span className="mr-2 text-xs text-white opacity-60">
+                  Scene
+                </span>
+                <span className="text-sm font-bold text-white opacity-60">
+                  {currentSceneIndex + 1}
+                </span>
+                <span className="pl-1 text-sm text-white opacity-60">
+                  / {prologueDialogue.length}
                 </span>
               </motion.div>
 
               <MuteButton showAnimation={false} />
             </div>
 
-            <motion.button
-              style={{
-                padding: "2px 4px",
-              }}
+            <Button
               onClick={() => setShowSkipConfirm(true)}
-              className="px-6 py-2.5 rounded-lg bg-slate-900 bg-opacity-70 backdrop-blur-sm border border-white border-opacity-30 text-white hover:text-gray-200 text-sm font-medium transition-all shadow-lg hover:shadow-white/10"
+              className="btn-ghost"
             >
-              <span className="flex items-center gap-2">건너뛰기</span>
-            </motion.button>
+              <span className="flex items-center gap-2 font-medium">
+                건너뛰기
+              </span>
+            </Button>
           </div>
         </div>
 
@@ -100,29 +101,29 @@ export function StoryPage() {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="absolute inset-0 z-100 flex items-center justify-center bg-black bg-opacity-70 backdrop-blur-sm"
+            className="bg-opacity-70 absolute inset-0 z-100 flex items-center justify-center bg-black backdrop-blur-sm"
             onClick={() => setShowSkipConfirm(false)}
           >
             <motion.div
               initial={{ scale: 0.9, opacity: 0, y: 20 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               transition={{ type: "spring", duration: 0.5 }}
-              className="bg-slate-950 bg-opacity-90 backdrop-blur-md rounded-2xl p-8 max-w-md mx-4"
+              className="bg-opacity-90 mx-4 max-w-md rounded-2xl bg-slate-950 p-8 backdrop-blur-md"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="text-center mb-6">
+              <div className="mb-6 text-center">
                 <motion.div
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
                   transition={{ delay: 0.2, type: "spring" }}
-                  className="w-16 h-16 mx-auto mb-4 rounded-full bg-linear-to-br from-amber-500 to-orange-600 bg-opacity-20 flex items-center justify-center"
+                  className="bg-opacity-20 mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-linear-to-br from-amber-500 to-orange-600"
                 >
                   <span className="text-4xl">⏭️</span>
                 </motion.div>
-                <h3 className="text-white text-xl md:text-2xl font-bold mb-3">
+                <h3 className="mb-3 text-xl font-bold text-white md:text-2xl">
                   프롤로그를 건너뛰시겠습니까?
                 </h3>
-                <p className="text-gray-400 text-base">
+                <p className="text-base text-gray-400">
                   스토리를 나중에 다시 볼 수 있습니다.
                 </p>
               </div>
@@ -131,7 +132,7 @@ export function StoryPage() {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={handleSkip}
-                  className="w-full px-8 py-3 text-base font-bold tracking-wider rounded-xl transition-all"
+                  className="w-full rounded-xl px-8 py-3 text-base font-bold tracking-wider transition-all"
                   style={{
                     background:
                       "linear-gradient(135deg, #FFE5B8 0%, #FFD88A 50%, #D4B887 100%)",
@@ -146,7 +147,7 @@ export function StoryPage() {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => setShowSkipConfirm(false)}
-                  className="w-full text-amber-300 hover:text-amber-200 text-sm transition-colors"
+                  className="w-full text-sm text-amber-300 transition-colors hover:text-amber-200"
                 >
                   계속 보기
                 </motion.button>
