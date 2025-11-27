@@ -96,7 +96,7 @@ export function VisualNovelScene({
         </div>
       )}
 
-      <div className="absolute inset-0 flex flex-col items-center justify-center px-12 pt-28 pb-16 md:px-20">
+      <div className="absolute inset-0 flex flex-col items-center justify-center px-4 pt-20 pb-12 sm:px-8 sm:pt-24 sm:pb-14 lg:px-12 lg:pt-28 lg:pb-16">
         {/* 대화창 영역 */}
         <motion.div
           initial={{ y: 50, opacity: 0 }}
@@ -104,7 +104,7 @@ export function VisualNovelScene({
           transition={{ duration: 0.4 }}
           className="absolute bottom-0 w-full max-w-4xl shrink-0"
         >
-          <div className="flex justify-center gap-4">
+          <div className="flex flex-col items-center justify-center gap-4 md:flex-row">
             <div className="pointer-events-none flex min-h-0 w-full max-w-6xl flex-1 items-end justify-center">
               <AnimatePresence mode="wait">
                 {scene.character && (
@@ -126,12 +126,9 @@ export function VisualNovelScene({
                         : "justify-end",
                     )}
                   >
-                    <div
-                      className="relative overflow-hidden"
-                      style={{ width: 250, height: 370 }}
-                    >
+                    <div className="relative h-[260px] w-[180px] overflow-hidden sm:h-[320px] sm:w-[220px] lg:h-[370px] lg:w-[250px]">
                       <div className="absolute inset-0 z-0 flex items-center justify-center">
-                        <div className="relative h-[220px] w-[320px]">
+                        <div className="relative h-[160px] w-[220px] sm:h-[200px] sm:w-[280px] lg:h-[220px] lg:w-[320px]">
                           <Image
                             src={scene.character.sprite}
                             alt={scene.character.name}
@@ -175,13 +172,12 @@ export function VisualNovelScene({
               initial={{ scale: 0.95 }}
               animate={{ scale: 1 }}
               transition={{ duration: 0.3 }}
-              style={{ padding: "16px 24px" }}
               className={clsx(
-                "bg-slate-[#965f2f] bg-opacity-95 border-opacity-60 w-full self-end rounded-xl border-2 border-[#cba9823e] px-6 pb-6 shadow-2xl backdrop-blur-md md:px-8 md:pt-10 md:pb-8",
-                scene.character ? "h-[295px]" : "max-h-[300px] min-h-[140px]",
+                "bg-slate-[#965f2f] bg-opacity-95 border-opacity-60 w-full self-end rounded-xl border-2 border-[#cba9823e] px-4 py-4 shadow-2xl backdrop-blur-md sm:px-6 sm:py-6 md:px-8 md:pt-10 md:pb-8",
+                "max-h-[320px] min-h-[180px] sm:min-h-[210px] md:min-h-[240px] lg:min-h-[260px]",
               )}
             >
-              <p className="min-h-16 text-left text-base leading-relaxed text-white md:text-lg lg:text-xl">
+              <p className="min-h-16 text-left text-sm leading-relaxed text-white sm:text-base md:text-lg lg:text-xl">
                 {displayedText}
                 {isTyping && (
                   <motion.span

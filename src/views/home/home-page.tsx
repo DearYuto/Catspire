@@ -14,16 +14,18 @@ export function HomePage() {
 
   return (
     <main
-      className="relative flex min-h-screen items-center justify-center overflow-hidden"
+      className="relative flex min-h-screen flex-col items-center justify-between overflow-hidden px-4 py-6 sm:px-6 lg:px-8"
       style={{ backgroundColor: "#0A0620" }}
     >
       <MoonParticles />
       <MuteButton showAnimation={isFirstVisit} />
-      <div>
+      <div className="flex flex-1 flex-col items-center justify-center gap-6 text-center sm:gap-8">
         <GameLogo initAnimation={isFirstVisit} />
         <IntroButtons initAnimation={isFirstVisit} />
       </div>
-      <HomeFooter isFirstVisit={isFirstVisit} />
+      <div className="mt-6 w-full max-w-4xl">
+        <HomeFooter isFirstVisit={isFirstVisit} />
+      </div>
     </main>
   );
 }
