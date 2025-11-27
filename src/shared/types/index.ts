@@ -6,7 +6,7 @@ export type {
 } from "@/entities/character/types";
 export type { Enemy, EnemyAction, Loot } from "@/entities/enemy/types";
 export type { Card, CardEffect } from "@/entities/card/types";
-export type { GameState } from "@/features/game-progress/types";
+// export type { GameState } from "@/features/game-progress/types";
 
 export type GamePhase =
   | "menu"
