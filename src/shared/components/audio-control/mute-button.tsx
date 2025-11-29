@@ -31,7 +31,7 @@ export function MuteButton({ showAnimation = false }: MuteButtonProps) {
         // onClick={toggleMute}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
-        className="group relative w-12 h-12 rounded-full bg-slate-900 bg-opacity-40 backdrop-blur-sm hover:bg-opacity-60 transition-all"
+        className="group bg-opacity-40 hover:bg-opacity-60 relative h-12 w-12 rounded-full bg-slate-900 backdrop-blur-sm transition-all"
       >
         <AnimatePresence mode="wait">
           {/* {isMuted ? (
