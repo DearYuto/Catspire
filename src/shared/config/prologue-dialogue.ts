@@ -161,3 +161,24 @@ export const prologueDialogue: DialogueScene[] = [
   id: index + 1,
   ...scene,
 }));
+
+export const extractPrologueImages = () => {
+  const backgrounds = new Set<string>();
+  const characters = new Set<string>();
+
+  prologueDialogue.forEach((scene) => {
+    if (scene.background) {
+      backgrounds.add(scene.background);
+    }
+
+    if (scene.character?.sprite) {
+      characters.add(scene.character.sprite);
+    }
+  });
+
+  return {
+    backgrounds: Array.from(backgrounds),
+    characters: Array.from(characters),
+    all: [...Array.from(backgrounds), ...Array.from(characters)],
+  };
+};

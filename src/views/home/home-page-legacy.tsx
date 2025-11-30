@@ -6,31 +6,44 @@ import { useFirstVisit } from "@/shared/lib/hooks/use-first-visit";
 import GameLogo from "@/shared/components/game-logo/game-logo";
 import { HomeFooter } from "./home-footer";
 import { IntroButtons } from "@/features/game-main/components/intro-buttons";
-import Image from "next/image";
-import { useState } from "react";
-import { extractPrologueImages } from "@/shared/config/prologue-dialogue";
-import { extractCharacterImages } from "@/entities/character/model/character-images";
+import { useImagePreloader } from "@/shared/lib/hooks/use-image-preloader";
 
 const FIRST_VISIT_STORAGE_KEY = "catspire_visited";
 
-const DECORATION_IMAGES = [
+const PRELOAD_BG_IMAGE_URLS = [
+  "/images/backgrounds/moon_bg.png",
+  "/images/backgrounds/shadow_bg.png",
+  "/images/backgrounds/dream_bg.png",
+  "/images/backgrounds/scene_darkness.png",
+  "/images/backgrounds/scene_moon_shard.png",
+  "/images/backgrounds/scene_mysterious_tower.png",
+] as const;
+
+const PRELOAD_CHARACTER_IMAGE_URLS = [
+  "/images/backgrounds/scene_yuto_bg.png",
+  "/images/characters/yuto_worried.png",
+  "/images/characters/moon_purr.png",
+  "/images/characters/shadow_paw.png",
+  "/images/characters/dream_tail.png",
+] as const;
+
+const PRELOAD_DECORATION_IMAGE_URLS = [
   "/images/decoration/deco_top.png",
   "/images/decoration/frame.png",
 ] as const;
 
-const prologueImages = extractPrologueImages();
-const characterImages = extractCharacterImages();
-
-const ALL_IMAGE_URLS = [
-  ...DECORATION_IMAGES,
-  ...prologueImages.all,
-  ...characterImages.all,
-] as const;
-
 const HomePage = () => {
+  const { isComplete, progress } = useImagePreloader({
+    imageUrls: [
+      ...PRELOAD_BG_IMAGE_URLS,
+      ...PRELOAD_CHARACTER_IMAGE_URLS,
+      ...PRELOAD_DECORATION_IMAGE_URLS,
+    ],
+  });
+
+  console.log(isComplete, "isComplete");
+
   const isFirstVisit = useFirstVisit(FIRST_VISIT_STORAGE_KEY);
-  const [imagesLoaded, setImagesLoaded] = useState(isFirstVisit ? false : true);
-  const [loadedCount, setLoadedCount] = useState(0);
 
   return (
     <main
@@ -40,7 +53,7 @@ const HomePage = () => {
       <MoonParticles />
       <MuteButton showAnimation={isFirstVisit} />
       <div className="flex flex-1 flex-col items-center justify-center gap-6 text-center sm:gap-8">
-        {imagesLoaded ? (
+        {isComplete ? (
           <>
             <GameLogo initAnimation={isFirstVisit} />
             <IntroButtons initAnimation={isFirstVisit} />
@@ -48,36 +61,12 @@ const HomePage = () => {
         ) : (
           <div className="text-2xl font-bold text-white">
             게임에 필요한 리소스 준비중...
-            <div className="text-sm text-gray-500">
-              {Math.round((loadedCount / ALL_IMAGE_URLS.length) * 100)}%
-            </div>
+            <div className="text-sm text-gray-500">{progress}%</div>
           </div>
         )}
       </div>
       <div className="mt-6 w-full max-w-4xl">
         <HomeFooter isFirstVisit={isFirstVisit} />
-      </div>
-
-      <div className="hidden" aria-hidden="true">
-        {ALL_IMAGE_URLS.map((url) => (
-          <Image
-            key={url}
-            src={url}
-            alt="preload"
-            priority
-            fill
-            sizes="100vw"
-            onLoad={() => {
-              setLoadedCount((prev) => {
-                const newCount = prev + 1;
-                if (newCount === ALL_IMAGE_URLS.length) {
-                  setImagesLoaded(true);
-                }
-                return newCount;
-              });
-            }}
-          />
-        ))}
       </div>
     </main>
   );

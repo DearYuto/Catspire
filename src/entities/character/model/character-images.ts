@@ -21,7 +21,28 @@ export const CHARACTER_IMAGES: Record<CharacterClass, CharacterImages> = {
 } as const;
 
 export function getCharacterImages(
-  characterClass: CharacterClass
+  characterClass: CharacterClass,
 ): CharacterImages {
   return CHARACTER_IMAGES[characterClass];
 }
+
+export const extractCharacterImages = () => {
+  const backgrounds = new Set<string>();
+  const characters = new Set<string>();
+
+  Object.values(CHARACTER_IMAGES).forEach((characterImage) => {
+    if (characterImage.background) {
+      backgrounds.add(characterImage.background);
+    }
+
+    if (characterImage.character) {
+      characters.add(characterImage.character);
+    }
+  });
+
+  return {
+    backgrounds: Array.from(backgrounds),
+    characters: Array.from(characters),
+    all: [...Array.from(backgrounds), ...Array.from(characters)],
+  };
+};
