@@ -46,21 +46,17 @@ export function StoryPage() {
       >
         {/* Top Controls - 게임 영역 내부 */}
         <div className="absolute top-0 right-0 left-0 z-50 p-4 sm:p-6 lg:p-8">
-          <div className="flex items-center justify-between gap-3 overflow-x-auto rounded-full bg-black/20 px-3 py-2 whitespace-nowrap sm:gap-4 sm:bg-transparent sm:px-0 sm:py-0">
-            {/* Left side - Navigation buttons */}
-            <div className="flex items-center gap-3">
-              <Button
-                size="sm"
-                onClick={() => router.push("/")}
-                className="btn-ghost shrink-0"
-              >
-                <span className="flex items-center gap-2 font-medium">
-                  메인으로
-                </span>
-              </Button>
-            </div>
+          <div className="flex w-full items-center justify-between gap-3">
+            <Button
+              size="sm"
+              onClick={() => router.push("/")}
+              className="btn-ghost shrink-0"
+            >
+              <span className="flex items-center gap-2 font-medium">
+                메인으로
+              </span>
+            </Button>
 
-            {/* Right side - Progress & Mute button */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -88,16 +84,16 @@ export function StoryPage() {
             <Button
               size="sm"
               onClick={() => setShowSkipConfirm(true)}
-              className="btn-ghost shrink-0"
+              className="btn-ghost order-last shrink-0"
             >
               <span className="flex items-center gap-2 font-medium">
                 건너뛰기
               </span>
             </Button>
           </div>
-
-          <MuteButton showAnimation={false} />
         </div>
+
+        <MuteButton showAnimation={false} />
 
         {/* 비주얼노벨씬 */}
         <VisualNovelScene
