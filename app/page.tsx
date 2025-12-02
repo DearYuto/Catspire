@@ -1,5 +1,9 @@
+"use client";
+
 import { HomePage } from "@/views/home";
 
-export default function Page() {
+const Page = () => {
   return <HomePage />;
-}
+};
+
+export default Page;
