@@ -14,7 +14,7 @@ export function CharacterSelectPage() {
 
   const handleStartGame = (characterClass: CharacterClass) => {
     // startNewGame(characterClass);
-    router.push("/game");
+    router.push(`/story/moon-purr`);
   };
 
   return (

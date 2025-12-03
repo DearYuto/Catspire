@@ -12,7 +12,7 @@ import type { Card } from "../types";
  * - 턴 종료 시 달빛 스택 +1
  * - 달빛 3 스택: 다음 공격/방어 +50%
  */
-export const WARRIOR_CARDS: Card[] = [
+export const WARRIOR_CARDS = [
   // 0코
   {
     id: "moonpurr_lunar_flow",
@@ -389,4 +389,44 @@ export const WARRIOR_CARDS: Card[] = [
       },
     ],
   },
+] as const satisfies readonly Card[];
+
+/**
+ * 문퍼 기본 시작 덱
+ *
+ * - 보통 덱빌딩 로그라이크의 시작 덱 구성(10~12장)을 참고해서
+ *   10장으로 구성:
+ *   - 달빛 강타(공격) 4장
+ *   - 달빛 방어(방어) 4장
+ *   - 달의 흐름(스택 생성) 1장
+ *   - 달의 숨결(드로우) 1장
+ */
+const getWarriorCardById = (id: (typeof WARRIOR_CARDS)[number]["id"]): Card => {
+  const card = WARRIOR_CARDS.find((c) => c.id === id);
+
+  if (!card) {
+    throw new Error(`${id}는 존재하지 않는 카드입니다.`);
+  }
+
+  return card;
+};
+
+export const WARRIOR_STARTER_DECK: Card[] = [
+  // 달빛 강타
+  getWarriorCardById("moonpurr_strike"),
+  getWarriorCardById("moonpurr_strike"),
+  getWarriorCardById("moonpurr_strike"),
+  getWarriorCardById("moonpurr_strike"),
+
+  // 달빛 방어
+  getWarriorCardById("moonpurr_defend"),
+  getWarriorCardById("moonpurr_defend"),
+  getWarriorCardById("moonpurr_defend"),
+  getWarriorCardById("moonpurr_defend"),
+
+  // 달의 흐름
+  getWarriorCardById("moonpurr_lunar_flow"),
+
+  // 달의 숨결
+  getWarriorCardById("moonpurr_lunar_breath"),
 ];

@@ -1,6 +1,12 @@
 import { CharacterClass } from "@/entities/character/types";
 import { Card, CardRarity, CardType } from "../types";
-import { COMMON_CARDS, MAGE_CARDS, ROGUE_CARDS, WARRIOR_CARDS } from "./card";
+import {
+  COMMON_CARDS,
+  MAGE_CARDS,
+  ROGUE_CARDS,
+  WARRIOR_CARDS,
+  WARRIOR_STARTER_DECK,
+} from "./card";
 
 export const CardService = {
   ALL_CARDS: [
@@ -10,10 +16,13 @@ export const CardService = {
     ...COMMON_CARDS,
   ] as const,
 
+  /**
+   * 클래스별 시작 덱
+   */
   getStartingCards(characterClass: CharacterClass): Card[] {
     switch (characterClass) {
       case "warrior":
-        return [...WARRIOR_CARDS];
+        return [...WARRIOR_STARTER_DECK];
       case "mage":
         return [...MAGE_CARDS];
       case "rogue":

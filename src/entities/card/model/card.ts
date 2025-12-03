@@ -1,6 +1,6 @@
 import type { Card } from "../types";
 
-export { WARRIOR_CARDS } from "./cards.warrior";
+export { WARRIOR_CARDS, WARRIOR_STARTER_DECK } from "./cards.warrior";
 export { MAGE_CARDS } from "./cards.mage";
 export { ROGUE_CARDS } from "./cards.rogue";
 
