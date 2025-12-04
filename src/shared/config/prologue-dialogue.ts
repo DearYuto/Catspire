@@ -13,32 +13,32 @@ export interface DialogueScene {
 
 export const prologueDialogue: DialogueScene[] = [
   {
-    background: "/images/backgrounds/scene_darkness.png",
+    background: "/images/backgrounds/scenes/scene_darkness.png",
     text: "냥토 왕국에 달빛이 사라진 날—",
     textSpeed: 40,
   },
   {
-    background: "/images/backgrounds/scene_moon_shard.png",
+    background: "/images/backgrounds/scenes/scene_moon_shard.png",
     text: "달의 파편(Moon Shard)이 흩어지며",
     textSpeed: 40,
   },
   {
-    background: "/images/backgrounds/scene_mysterious_tower.png",
+    background: "/images/backgrounds/scenes/scene_mysterious_tower.png",
     text: "신비로운 탑이 생겨났다.",
     textSpeed: 40,
   },
   {
-    background: "/images/backgrounds/moon_shard_tower_mystery.png",
+    background: "/images/backgrounds/scenes/scene_moon-shard-tower-mystery.png",
     text: "달빛의 힘을 잃은 왕국은 어둠에 잠식되기 시작했고",
     textSpeed: 40,
   },
   {
-    background: "/images/backgrounds/scene_monster_night.png",
+    background: "/images/backgrounds/scenes/scene_monster_night.png",
     text: "달의 몬스터들이 밤마다 출몰하기 시작했다.",
     textSpeed: 40,
   },
   {
-    background: "/images/backgrounds/scene_yuto_bg.png",
+    background: "/images/backgrounds/scenes/scene_yuto-bg.png",
     character: {
       sprite: "/images/characters/yuto_worried.png",
       name: "Yuto",
@@ -49,7 +49,7 @@ export const prologueDialogue: DialogueScene[] = [
     textSpeed: 35,
   },
   {
-    background: "/images/backgrounds/scene_yuto_bg.png",
+    background: "/images/backgrounds/scenes/scene_yuto-bg.png",
     character: {
       sprite: "/images/characters/yuto_worried.png",
       name: "Yuto",
@@ -60,7 +60,7 @@ export const prologueDialogue: DialogueScene[] = [
     textSpeed: 35,
   },
   {
-    background: "/images/backgrounds/scene_yuto_bg.png",
+    background: "/images/backgrounds/scenes/scene_yuto-bg.png",
     character: {
       sprite: "/images/characters/yuto_worried.png",
       name: "Yuto",
@@ -71,7 +71,7 @@ export const prologueDialogue: DialogueScene[] = [
     textSpeed: 35,
   },
   {
-    background: "/images/backgrounds/scene_yuto_bg.png",
+    background: "/images/backgrounds/scenes/scene_yuto-bg.png",
     character: {
       sprite: "/images/characters/yuto_worried.png",
       name: "Yuto",
@@ -82,7 +82,7 @@ export const prologueDialogue: DialogueScene[] = [
     textSpeed: 35,
   },
   {
-    background: "/images/backgrounds/scene_yuto_bg.png",
+    background: "/images/backgrounds/scenes/scene_yuto-bg.png",
     character: {
       sprite: "/images/characters/yuto_worried.png",
       name: "Yuto",
@@ -93,7 +93,7 @@ export const prologueDialogue: DialogueScene[] = [
     textSpeed: 35,
   },
   {
-    background: "/images/backgrounds/scene_yuto_bg.png",
+    background: "/images/backgrounds/scenes/scene_yuto-bg.png",
     character: {
       sprite: "/images/characters/yuto_worried.png",
       name: "Yuto",
@@ -104,7 +104,7 @@ export const prologueDialogue: DialogueScene[] = [
     textSpeed: 35,
   },
   {
-    background: "/images/backgrounds/scene_yuto_bg.png",
+    background: "/images/backgrounds/scenes/scene_yuto-bg.png",
     character: {
       sprite: "/images/characters/yuto_worried.png",
       name: "Yuto",
@@ -115,7 +115,7 @@ export const prologueDialogue: DialogueScene[] = [
     textSpeed: 35,
   },
   {
-    background: "/images/backgrounds/scene_yuto_bg.png",
+    background: "/images/backgrounds/scenes/scene_yuto-bg.png",
     character: {
       sprite: "/images/characters/yuto_worried.png",
       name: "Yuto",
@@ -126,7 +126,7 @@ export const prologueDialogue: DialogueScene[] = [
     textSpeed: 35,
   },
   {
-    background: "/images/backgrounds/scene_yuto_bg.png",
+    background: "/images/backgrounds/scenes/scene_yuto-bg.png",
     character: {
       sprite: "/images/characters/yuto_worried.png",
       name: "Yuto",
@@ -137,9 +137,9 @@ export const prologueDialogue: DialogueScene[] = [
     textSpeed: 30,
   },
   {
-    background: "/images/backgrounds/scene_yuto_bg.png",
+    background: "/images/backgrounds/scenes/scene_yuto-bg.png",
     character: {
-      sprite: "/images/characters/yuto_worried.png",
+      sprite: "/images/characters/character_yuto.worried.png",
       name: "Yuto",
       position: "left" as const,
     },
@@ -148,12 +148,12 @@ export const prologueDialogue: DialogueScene[] = [
     textSpeed: 30,
   },
   {
-    background: "/images/backgrounds/scene_ tower_entrance.png",
+    background: "/images/backgrounds/scenes/scene_tower-entrance.png",
     text: "당신은 달의 파편을 되찾고, 무토를 구할 수 있을까?",
     textSpeed: 40,
   },
   {
-    background: "/images/backgrounds/scene_ tower_entrance.png",
+    background: "/images/backgrounds/scenes/scene_tower-entrance.png",
     text: "50층의 달탑을 오르는 여정이 시작된다…",
     textSpeed: 40,
   },

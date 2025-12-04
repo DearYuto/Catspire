@@ -14,8 +14,8 @@ import { extractCharacterImages } from "@/entities/character/model/character-ima
 const FIRST_VISIT_STORAGE_KEY = "catspire_visited";
 
 const DECORATION_IMAGES = [
-  "/images/decoration/deco_top.png",
-  "/images/decoration/frame.png",
+  "/images/decoration/decoration_card.top.png",
+  "/images/decoration/decoration_frame.default.png",
 ] as const;
 
 const prologueImages = extractPrologueImages();

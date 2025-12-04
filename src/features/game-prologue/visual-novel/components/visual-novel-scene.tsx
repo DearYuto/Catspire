@@ -140,7 +140,7 @@ export function VisualNovelScene({
                       </div>
 
                       <Image
-                        src="/images/decoration/frame.png"
+                        src="/images/decoration/decoration_frame.default.png"
                         alt="Character frame"
                         fill
                         priority

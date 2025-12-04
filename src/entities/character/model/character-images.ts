@@ -7,16 +7,16 @@ export interface CharacterImages {
 
 export const CHARACTER_IMAGES: Record<CharacterClass, CharacterImages> = {
   warrior: {
-    background: "/images/backgrounds/moon_bg.png",
-    character: "/images/characters/moon_purr.png",
+    background: "/images/backgrounds/bg_moon.png",
+    character: "/images/characters/character_moon_purr.default.png",
   },
   rogue: {
-    background: "/images/backgrounds/shadow_bg.png",
-    character: "/images/characters/shadow_paw.png",
+    background: "/images/backgrounds/bg_shadow.png",
+    character: "/images/characters/character_shadow_paw.default.png",
   },
   mage: {
-    background: "/images/backgrounds/dream_bg.png",
-    character: "/images/characters/dream_tail.png",
+    background: "/images/backgrounds/bg_dream.png",
+    character: "/images/characters/character_dream-tail.default.png",
   },
 } as const;
 

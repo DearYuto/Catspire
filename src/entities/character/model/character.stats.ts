@@ -6,7 +6,7 @@ interface CharacterStats {
   maxEnergy: number;
 }
 
-export const CHARACTER_BASE_STATS: Record<CharacterClass, CharacterStats> = {
+export const CHARACTER_BASE_STATS = {
   warrior: {
     name: "Moon Purr",
     maxHp: 80,
@@ -22,4 +22,4 @@ export const CHARACTER_BASE_STATS: Record<CharacterClass, CharacterStats> = {
     maxHp: 70,
     maxEnergy: 4,
   },
-} as const;
+} as const satisfies Record<CharacterClass, CharacterStats>;
