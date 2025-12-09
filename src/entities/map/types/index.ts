@@ -31,18 +31,23 @@ interface MapNodeBase {
 }
 export type MapNode = Readonly<MapNodeBase>;
 
+export type MinMaxRange = {
+  min: number;
+  max: number;
+};
+
 interface MapConfigBase {
   totalLayers: number;
-  nodesPerLayer: [number, number];
-  eliteRange: [number, number];
-  bossRange: [1, 1];
-  eventRange: [number, number];
-  startRange: [1, 1];
-  endRange: [1, 1];
-  battleRange: [1, number];
-  restRange?: [number, number]; // 추후 추가예정
-  treasureRange?: [number, number]; // 추후 추가예정
-  shopRange?: [number, number]; // 추후 추가예정
+  nodesPerLayer: MinMaxRange;
+  eliteRange: MinMaxRange;
+  bossRange: MinMaxRange;
+  eventRange: MinMaxRange;
+  startRange: MinMaxRange;
+  endRange: MinMaxRange;
+  battleRange: MinMaxRange;
+  restRange?: MinMaxRange; // 추후 추가예정
+  treasureRange?: MinMaxRange; // 추후 추가예정
+  shopRange?: MinMaxRange; // 추후 추가예정
 }
 export type MapConfig = Readonly<MapConfigBase>;
 

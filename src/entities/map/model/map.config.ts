@@ -1,4 +1,6 @@
-export const NODE_CONFIG = {
+import { NodeStyle } from "../types";
+
+export const NODE_CONFIG: NodeStyle = {
   start: {
     image: "/images/map/node_start.png",
     label: "시작",
