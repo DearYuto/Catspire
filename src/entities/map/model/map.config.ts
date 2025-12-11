@@ -1,4 +1,4 @@
-import { NodeStyle } from "../types";
+import { MapConfig, NodeStyle } from "../types";
 
 export const NODE_CONFIG: NodeStyle = {
   start: {
@@ -38,3 +38,47 @@ export const NODE_CONFIG: NodeStyle = {
     label: "종료",
   },
 } as const;
+
+export const DEFAULT_MAP_CONFIG: MapConfig = {
+  totalLayers: 6,
+  nodesPerLayer: {
+    min: 2,
+    max: 4,
+  },
+  eliteRange: {
+    min: 2,
+    max: 5,
+  },
+  bossRange: {
+    min: 1,
+    max: 1,
+  },
+  eventRange: {
+    min: 1,
+    max: 1,
+  },
+  startRange: {
+    min: 1,
+    max: 1,
+  },
+  endRange: {
+    min: 1,
+    max: 1,
+  },
+  battleRange: {
+    min: 15,
+    max: 25,
+  },
+  restRange: {
+    min: 0, // TODO: 추후 추가 예정
+    max: 0,
+  },
+  treasureRange: {
+    min: 0, // TODO: 추후 추가 예정
+    max: 0,
+  },
+  shopRange: {
+    min: 0, // TODO: 추후 추가 예정
+    max: 0,
+  },
+};
