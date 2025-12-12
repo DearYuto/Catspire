@@ -1,7 +1,7 @@
 export class RandomGenerator {
   private seed: number;
 
-  constructor(seed: number) {
+  constructor(seed?: number) {
     this.seed = seed ?? Math.floor(Math.random() * 10000);
   }
 
