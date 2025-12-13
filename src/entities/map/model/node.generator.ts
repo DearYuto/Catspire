@@ -1,5 +1,6 @@
 import { RandomGenerator } from "@/shared/lib/utils/random-generator";
-import { MapConfig, MapNode } from "../types";
+import { MapConfig, MapNode, NodeType } from "../types";
+import { NODE_PLACEMENT_RULES } from "../constants/rules";
 
 interface GenerateLayers {
   config: MapConfig;
@@ -50,3 +51,39 @@ export const generateLayers = ({ config, randomGenerator }: GenerateLayers) => {
 
   return nodes;
 };
+
+export function determineNodeType(
+  layer: number,
+  totalLayers: number,
+  randomGenerator: RandomGenerator,
+): NodeType {
+  const isFirstNode = layer === 0;
+  const isLastNode = layer === totalLayers;
+
+  if (isFirstNode) return "start";
+
+  if (isLastNode) return "end";
+
+  return pickNodeType(layer, totalLayers, randomGenerator);
+}
+
+export function pickNodeType(
+  layer: number,
+  totalLayers: number,
+  randomGenerator: RandomGenerator,
+): NodeType {
+  const progress = layer / (totalLayers - 1);
+
+  const availableTypes = (
+    Object.keys(NODE_PLACEMENT_RULES) as NodeType[]
+  ).filter((type) => {
+    const rule =
+      NODE_PLACEMENT_RULES[type as keyof typeof NODE_PLACEMENT_RULES];
+
+    return rule.min <= progress && rule.max >= progress;
+  });
+
+  const selectedType = randomGenerator.pick(availableTypes)!;
+
+  return selectedType ?? "battle";
+}
