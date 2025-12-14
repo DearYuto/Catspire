@@ -2,12 +2,12 @@ export type NodeType =
   | "start"
   | "battle"
   | "elite"
-  | "shop"
+  // | "shop"
   | "boss"
-  | "event"
-  | "end"
-  | "rest" // TODO: 추후 추가 예정 (몬스터 강화나 hp회복)
-  | "treasure"; // TODO: 추후 추가 예정 (아이템 획득)
+  // | "event"
+  | "end";
+// | "rest" // TODO: 추후 추가 예정 (몬스터 강화나 hp회복)
+// | "treasure"; // TODO: 추후 추가 예정 (아이템 획득)
 
 export type NodeState = "locked" | "unlocked" | "completed" | "current";
 
@@ -52,7 +52,7 @@ interface MapConfigBase {
 export type MapConfig = Readonly<MapConfigBase>;
 
 interface GeneratedMapBase {
-  nods: readonly MapNode[];
+  nodes: readonly MapNode[];
   seed: number;
   config: MapConfig;
 }

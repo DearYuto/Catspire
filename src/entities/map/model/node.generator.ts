@@ -22,26 +22,25 @@ interface GenerateLayers {
 // 2 노드 만들기
 // 3 각 노드 연결
 
-export const generateLayers = ({ config, randomGenerator }: GenerateLayers) => {
+export const generateLayers = ({
+  config,
+  randomGenerator,
+}: GenerateLayers): MapNode[] => {
   const nodes: MapNode[] = [];
 
-  // 각 레이어별로 몇 개의 노드를 만들지 세팅
   for (let layer = 0; layer < config.totalLayers; layer++) {
-    const nodeCount = randomGenerator.between(
-      config.nodesPerLayer.min,
-      config.nodesPerLayer.max,
-    );
+    const nodeCount = getNodeCountForLayer(layer, config, randomGenerator);
 
     for (let col = 0; col < nodeCount; col++) {
       const node: MapNode = {
-        id: `${layer}-${col}`,
-        type: "start",
-        state: "unlocked",
+        id: createNodeId(layer, col),
+        type: getNodeTypeForLayer(layer, config.totalLayers, randomGenerator),
+        state: getNodeState(layer, col),
         layer,
         column: col,
-        x: 0,
+        x: 0, // 좌표는 나중에 map.layout.ts에서 계산
         y: 0,
-        connections: [],
+        connections: [], // 연결은 나중에 node.connector.ts에서 처리
         enemies: [],
       };
 
@@ -52,21 +51,74 @@ export const generateLayers = ({ config, randomGenerator }: GenerateLayers) => {
   return nodes;
 };
 
-export function determineNodeType(
-  layer: number,
-  totalLayers: number,
-  randomGenerator: RandomGenerator,
-): NodeType {
-  const isFirstNode = layer === 0;
-  const isLastNode = layer === totalLayers;
-
-  if (isFirstNode) return "start";
-
-  if (isLastNode) return "end";
-
-  return pickNodeType(layer, totalLayers, randomGenerator);
+/**
+ * 노드 ID 생성
+ */
+function createNodeId(layer: number, column: number): string {
+  return `${layer}-${column}`;
 }
 
+/**
+ * 레이어별 노드 개수 결정 (설정 기반)
+ */
+function getNodeCountForLayer(
+  layer: number,
+  config: MapConfig,
+  random: RandomGenerator,
+): number {
+  const isFirstLayer = layer === 0;
+  const isLastLayer = layer === config.totalLayers - 1;
+
+  if (isFirstLayer) {
+    return random.between(config.startRange.min, config.startRange.max);
+  }
+
+  if (isLastLayer) {
+    return random.between(config.endRange.min, config.endRange.max);
+  }
+
+  return random.between(config.nodesPerLayer.min, config.nodesPerLayer.max);
+}
+
+/**
+ * 레이어별 노드 타입 결정
+ */
+function getNodeTypeForLayer(
+  layer: number,
+  totalLayers: number,
+  random: RandomGenerator,
+): NodeType {
+  const isFirstLayer = layer === 0;
+  const isLastLayer = layer === totalLayers - 1;
+
+  if (isFirstLayer) return "start";
+  if (isLastLayer) return "end";
+
+  return pickNodeType(layer, totalLayers, random);
+}
+
+/**
+ * 노드 상태 결정
+ * - 첫 레이어의 첫 노드: current (현재 위치)
+ * - 첫 레이어의 나머지 노드: unlocked (갈 수 있음)
+ * - 두 번째 레이어: unlocked (시각화를 위해 임시로)
+ * - 나머지: locked
+ */
+function getNodeState(layer: number, column: number): MapNode["state"] {
+  // 첫 레이어의 첫 노드는 current
+  if (layer === 0 && column === 0) return "current";
+
+  // 첫 레이어의 나머지 노드는 unlocked
+  if (layer === 0) return "unlocked";
+
+  // 나머지는 locked
+  return "locked";
+}
+
+/**
+ * 중간 레이어의 노드 타입을 진행도 기반으로 선택
+ * NODE_PLACEMENT_RULES에 정의된 규칙에 따라 가능한 타입 중 하나를 랜덤 선택
+ */
 export function pickNodeType(
   layer: number,
   totalLayers: number,
@@ -74,6 +126,7 @@ export function pickNodeType(
 ): NodeType {
   const progress = layer / (totalLayers - 1);
 
+  // 현재 진행도에서 배치 가능한 노드 타입 필터링
   const availableTypes = (
     Object.keys(NODE_PLACEMENT_RULES) as NodeType[]
   ).filter((type) => {
@@ -83,7 +136,8 @@ export function pickNodeType(
     return rule.min <= progress && rule.max >= progress;
   });
 
-  const selectedType = randomGenerator.pick(availableTypes)!;
+  // 가능한 타입 중 랜덤 선택
+  const selectedType = randomGenerator.pick(availableTypes);
 
   return selectedType ?? "battle";
 }
