@@ -54,6 +54,14 @@ export interface Card {
   // shopPrice?: number;
 }
 
+export interface Deck {
+  hand: Card[];
+  drawPile: Card[]; // 뽑기
+  discardPile: Card[]; // 버리기
+  cards: Card[]; // 덱에 있는 카드
+  lockedPile: Card[]; // 락 카드 더미
+}
+
 export type CardTarget = "self" | "enemy" | "allEnemies";
 
 export type EffectType =
