@@ -1,5 +1,12 @@
-import type { MapNode } from "@/entities/map/types";
 import { memo } from "react";
+import type { MapNode } from "@/entities/map/types";
+
+const CONNECTION_STYLE = {
+  stroke: "#334155",
+  strokeWidth: 2,
+  strokeDasharray: "4 4",
+  opacity: 0.4,
+} as const;
 
 interface MapConnectionProps {
   fromNode: MapNode;
@@ -16,10 +23,7 @@ export const MapConnection = memo(function MapConnection({
       y1={fromNode.y}
       x2={toNode.x}
       y2={toNode.y}
-      stroke="#334155"
-      strokeWidth="2"
-      strokeDasharray="4 4"
-      opacity="0.4"
+      {...CONNECTION_STYLE}
     />
   );
 });
@@ -31,26 +35,29 @@ interface MapConnectionsProps {
 export const MapConnections = memo(function MapConnections({
   nodes,
 }: MapConnectionsProps) {
+  const nodeMap = new Map(nodes.map((node) => [node.id, node]));
+
   return (
     <svg
       className="pointer-events-none absolute inset-0"
       width="100%"
       height="100%"
     >
-      {nodes.map((node) =>
-        node.connections.map((targetNodeId) => {
-          const targetNode = nodes.find((n) => n.id === targetNodeId);
+      {nodes.flatMap((node) =>
+        node.connections
+          .map((targetId) => {
+            const targetNode = nodeMap.get(targetId);
+            if (!targetNode) return null;
 
-          if (!targetNode) return null;
-
-          return (
-            <MapConnection
-              key={`${node.id}-${targetNodeId}`}
-              fromNode={node}
-              toNode={targetNode}
-            />
-          );
-        }),
+            return (
+              <MapConnection
+                key={`${node.id}-${targetId}`}
+                fromNode={node}
+                toNode={targetNode}
+              />
+            );
+          })
+          .filter(Boolean),
       )}
     </svg>
   );
